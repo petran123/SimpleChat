@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SimpleChat.Data;
 using SimpleChat.Models;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace SimpleChat.Controllers
 {
@@ -81,39 +79,36 @@ namespace SimpleChat.Controllers
         [HttpPost]
         public async Task<ActionResult<User>> PostUser(User user)
         {
-            var takenName = _context.Users.Where(u => u.UserName == user.UserName);
 
-            if (await takenName.AnyAsync()) 
+            var takenName = await _context.Users.Where(u => u.UserName == user.UserName).FirstOrDefaultAsync();
+            // if the name already exists and is unused, use it
+            if (!(takenName is null))
             {
-                return await takenName.FirstAsync();
+                if (!takenName.IsActive)
+                {
+                    // the problem with this solution is that names that can get stuck as active...
+                    // TODO find an alternative
+                    // perhaps a put/patch can do that after confirming? but in that case we can get duplicate users...
+                    takenName.IsActive = true;
+
+                    return takenName;
+                }
+                // else
+                int i = 1;
+                while (await _context.Users.Where(u => u.UserName == user.UserName + $" ({i})").AnyAsync())
+                {
+                    i++;
+                }
+
+                user.UserName += $" ({i})";
+
             }
-            
+
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
 
             return CreatedAtAction(nameof(GetUser), new { id = user.Id }, user);
         }
-
-        // DELETE: api/Users/5
-        //[HttpDelete("{id}")]
-        //public async Task<ActionResult<User>> DeleteUser(int id)
-        //{
-        //    var user = await _context.Users.FindAsync(id);
-        //    if (user == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    _context.Users.Remove(user);
-        //    await _context.SaveChangesAsync();
-
-        //    return user;
-        //}
-
-        //private bool UserExists(int id)
-        //{
-        //    return _context.Users.Any(e => e.Id == id);
-        //}
     }
 }
