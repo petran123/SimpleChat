@@ -12,48 +12,49 @@ namespace SimpleChat.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BoardsController : ControllerBase
+    public class UsersController : ControllerBase
     {
         private readonly BoardContext _context;
 
-        public BoardsController(BoardContext context)
+        public UsersController(BoardContext context)
         {
             _context = context;
         }
 
-        // GET: api/Boards
+        // GET: api/Users
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Board>>> GetBoards()
+        public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
-            return await _context.Boards.ToListAsync();
+            // TODO make this the only option and return where board.id = 1
+            return await _context.Users.ToListAsync();
         }
 
-        // GET: api/Boards/5
+        // GET: api/Users/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Board>> GetBoard(int id)
+        public async Task<ActionResult<User>> GetUser(int id)
         {
-            var board = await _context.Boards.FindAsync(id);
+            var user = await _context.Users.FindAsync(id);
 
-            if (board == null)
+            if (user == null)
             {
                 return NotFound();
             }
 
-            return board;
+            return user;
         }
 
-        // PUT: api/Boards/5
+        // PUT: api/Users/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutBoard(int id, Board board)
+        public async Task<IActionResult> PutUser(int id, User user)
         {
-            if (id != board.Id)
+            if (id != user.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(board).State = EntityState.Modified;
+            _context.Entry(user).State = EntityState.Modified;
 
             try
             {
@@ -61,7 +62,7 @@ namespace SimpleChat.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!BoardExists(id))
+                if (!UserExists(id))
                 {
                     return NotFound();
                 }
@@ -74,37 +75,37 @@ namespace SimpleChat.Controllers
             return NoContent();
         }
 
-        // POST: api/Boards
+        // POST: api/Users
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost]
-        public async Task<ActionResult<Board>> PostBoard(Board board)
+        public async Task<ActionResult<User>> PostUser(User user)
         {
-            _context.Boards.Add(board);
+            _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetBoard", new { id = board.Id }, board);
+            return CreatedAtAction("GetUser", new { id = user.Id }, user);
         }
 
-        // DELETE: api/Boards/5
+        // DELETE: api/Users/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Board>> DeleteBoard(int id)
+        public async Task<ActionResult<User>> DeleteUser(int id)
         {
-            var board = await _context.Boards.FindAsync(id);
-            if (board == null)
+            var user = await _context.Users.FindAsync(id);
+            if (user == null)
             {
                 return NotFound();
             }
 
-            _context.Boards.Remove(board);
+            _context.Users.Remove(user);
             await _context.SaveChangesAsync();
 
-            return board;
+            return user;
         }
 
-        private bool BoardExists(int id)
+        private bool UserExists(int id)
         {
-            return _context.Boards.Any(e => e.Id == id);
+            return _context.Users.Any(e => e.Id == id);
         }
     }
 }
