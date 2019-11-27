@@ -38,7 +38,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="ClientApp\src\app\home\home.service.ts" />
+    <None Remove="ClientApp\src\app\chat\chat.service.ts" />
+    <None Remove="ClientApp\src\app\messages\messages.component.ts" />
+    <None Remove="ClientApp\src\app\messages\messages.service.ts" />
+    <None Remove="ClientApp\src\app\pick-name\pick-name.component.ts" />
+    <None Remove="ClientApp\src\app\pick-name\pick-name.service.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -46,7 +50,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <TypeScriptCompile Include="ClientApp\src\app\home\home.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\chat\chat.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\messages\messages.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\messages\messages.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\pick-name\pick-name.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\pick-name\pick-name.service.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

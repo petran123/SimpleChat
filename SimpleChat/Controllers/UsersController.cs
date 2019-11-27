@@ -90,6 +90,7 @@ namespace SimpleChat.Controllers
                     // TODO find an alternative
                     // perhaps a put/patch can do that after confirming? but in that case we can get duplicate users...
                     takenName.IsActive = true;
+                    await _context.SaveChangesAsync();
 
                     return takenName;
                 }

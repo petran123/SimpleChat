@@ -13,8 +13,8 @@
 </ul>
 <p>The <code>ClientApp</code> subdirectory is a standard Angular CLI application. If you open a command prompt in that directory, you can run any <code>ng</code> command (e.g., <code>ng test</code>), or use <code>npm</code> to install extra packages into it.</p>-->
 
-  <h1>Welcome {{userForm.get('userName').value}}!</h1>
-<form [formGroup]="userForm" (ngSubmit)="submitUserName()">
-  <input type="text" formControlName="userName" placeholder="Your Name Here" />
-  <button type="submit" id="submitUserName" title="Go">Go</button>
-</form>
+<h1>Home component</h1>
+
+<pick-name-hook *ngIf="this.hasName==false" ></pick-name-hook>
+
+<chat-hook *ngIf="this.hasName" ></chat-hook>

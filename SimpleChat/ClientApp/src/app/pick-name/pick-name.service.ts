@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 
 @Injectable()
-export class HomeService {
+export class PickNameService {
 
     constructor(private http: HttpClient) { }
 

@@ -1,0 +1,5 @@
+<h1>Welcome {{userForm.get('userName').value}}!</h1>
+<form [formGroup]="userForm" (ngSubmit)="submitUserName()">
+  <input type="text" formControlName="userName" placeholder="Your Name Here" />
+  <button type="submit" id="submitUserName" title="Go">Go</button>
+</form>

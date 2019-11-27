@@ -1,0 +1,13 @@
+<h1>Chat component</h1>
+
+<div class="messages-container">
+  <messages-hook></messages-hook>
+</div>
+<div class="txtbox">
+
+  <form [formGroup]="userForm" (ngSubmit)="submitMessage()">
+    <input type="text" formControlName="newMessage" placeholder="send something" />
+    <button type="submit" id="submitNewMessage" title="Go">Go</button>
+  </form>
+
+</div>
