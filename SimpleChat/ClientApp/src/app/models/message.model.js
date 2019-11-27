@@ -1,9 +1,9 @@
 export class Message {
-    constructor(id, userName, messageBody) {
-        this.id = id;
-        this.userName = userName;
-        this.messageBody = messageBody;
-    }
+    //constructor(id: number, userName: string, messageBody: string) {
+    //    this.id = id;
+    //    this.userName = userName;
+    //    this.messageBody = messageBody;
+    //}
     deserialize(input) {
         // make sure this works as intented
         return Object.assign(this, input);

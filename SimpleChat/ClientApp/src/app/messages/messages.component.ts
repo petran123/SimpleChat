@@ -10,24 +10,31 @@ import { MessagesService } from '../services/messages.service'
 })
 export class MessagesComponent {
 
-    service: MessagesService;
-
     lastRetrievedMessageId: number;
     messages: Message[];
     
-    constructor() {
+    constructor(private service: MessagesService) {
         // retrieve all the messages up to this point
         // save the message id somewhere
-        this.retrieveMessages();
     }
 
     retrieveMessages() {
-        console.log(this.service.getMessages());
+        this.service.getMessages().subscribe(messages => this.messages = messages);
+        this.lastRetrievedMessageId = this.messages[(this.messages.length - 1)].id;
+    }
+
+    retrieveNewMessages() {
+        // call a get request
+
+        // assign the new messages with an array push
+
+        // make sure they're entered in the right order and not opposite
+
+        //the backend is already configured to return messages with Message.id > id, and as far as i know, they are sent in order of id ascending
     }
     
-    
-    
-
-    
+    ngOnInit() {
+        this.retrieveMessages();
+    }    
 }
 
