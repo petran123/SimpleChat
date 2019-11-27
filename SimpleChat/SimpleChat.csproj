@@ -41,6 +41,9 @@
     <None Remove="ClientApp\src\app\chat\chat.service.ts" />
     <None Remove="ClientApp\src\app\messages\messages.component.ts" />
     <None Remove="ClientApp\src\app\messages\messages.service.ts" />
+    <None Remove="ClientApp\src\app\models\deserializable.model.ts" />
+    <None Remove="ClientApp\src\app\models\message.model.ts" />
+    <None Remove="ClientApp\src\app\models\user.model.ts" />
     <None Remove="ClientApp\src\app\pick-name\pick-name.component.ts" />
     <None Remove="ClientApp\src\app\pick-name\pick-name.service.ts" />
   </ItemGroup>
@@ -50,11 +53,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <TypeScriptCompile Include="ClientApp\src\app\chat\chat.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\services\chat.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\messages\messages.component.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\messages\messages.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\services\messages.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\deserializable.model.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\message.model.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\user.model.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\pick-name\pick-name.component.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\pick-name\pick-name.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\services\pick-name.service.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
@@ -84,5 +90,21 @@
       </ResolvedFileToPublish>
     </ItemGroup>
   </Target>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <TypeScriptTarget>ES2015</TypeScriptTarget>
+    <TypeScriptJSXEmit>React</TypeScriptJSXEmit>
+    <TypeScriptModuleKind>ES6</TypeScriptModuleKind>
+    <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
+    <TypeScriptNoImplicitAny>False</TypeScriptNoImplicitAny>
+    <TypeScriptRemoveComments>False</TypeScriptRemoveComments>
+    <TypeScriptOutFile />
+    <TypeScriptOutDir />
+    <TypeScriptGeneratesDeclarations>False</TypeScriptGeneratesDeclarations>
+    <TypeScriptNoEmitOnError>True</TypeScriptNoEmitOnError>
+    <TypeScriptSourceMap>True</TypeScriptSourceMap>
+    <TypeScriptMapRoot />
+    <TypeScriptSourceRoot />
+  </PropertyGroup>
 
 </Project>

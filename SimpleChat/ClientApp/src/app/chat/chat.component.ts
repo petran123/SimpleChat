@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 
 import { FormGroup, FormControl } from '@angular/forms';
+import { PickNameComponent } from '../pick-name/pick-name.component';
 
 @Component({
     selector: 'chat-hook',
@@ -9,16 +10,36 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 
 export class ChatComponent {
-    users: User[];
-    name = 'Karkiniasa';
+    //users: User[];
+    currentUser = "Dokimastikos";
+
+    constructor() {
+
+
+
+        console.log(this.currentUser);
+        //console.log(this.users);
+    }
+
+    messageForm = new FormGroup({
+        newMessage: new FormControl('')
+    });
+
+    submitMessage() {
+        if (!(this.messageForm.get('newMessage').value == '')) {
+            console.log(this.messageForm.get('newMessage').value);
+            this.messageForm.patchValue({
+                newMessage: ''
+            });
+        }
+    }
+
+
 
     // now we need a get for the user list, optionally a system that only shows those who are online
 
 
     // then we need a method that posts messages
-
-    
-
 
 
 }

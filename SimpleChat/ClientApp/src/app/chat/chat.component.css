@@ -1,3 +1,26 @@
-body {
+.textbox {
+  position: fixed;
+  bottom: 0px;
+  /*left: 25%;*/
+  width: 100%;
+}
+
+input {
+  height: 80px;
+  width: calc(100% - 63px);
+}
+
+messages-container {
+  padding-bottom: 80px;
+}
+
+.textbox button {
+  padding: 26px 19px;
+}
+
+/*experimenting with textarea
+.textbox textarea {
+  resize: none;
 
 }
+  */

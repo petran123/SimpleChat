@@ -22,7 +22,7 @@ namespace SimpleChat
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<BoardContext>(opt =>
-               opt.UseInMemoryDatabase("dokimi"));
+               opt.UseInMemoryDatabase("MemoryDb"));
             services.AddControllers();
 
             services.AddControllersWithViews();

@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import { Message } from '../models/message.model'
+import { MessagesService } from '../services/messages.service'
 
 
 @Component({
@@ -8,15 +10,24 @@ import { Component } from '@angular/core';
 })
 export class MessagesComponent {
 
-    //messages: Message[];
+    service: MessagesService;
 
-    //constructor() {
-    //    this.messages = ['']
-    //}
+    lastRetrievedMessageId: number;
+    messages: Message[];
+    
+    constructor() {
+        // retrieve all the messages up to this point
+        // save the message id somewhere
+        this.retrieveMessages();
+    }
 
-    messages = ['proto', 'deutero', 'trito', 'tetarto'];
+    retrieveMessages() {
+        console.log(this.service.getMessages());
+    }
+    
+    
+    
+
+    
 }
 
-export interface Message {
-    body: string
-}

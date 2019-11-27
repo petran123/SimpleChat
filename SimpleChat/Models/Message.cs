@@ -8,8 +8,11 @@ namespace SimpleChat.Models
     public class Message
     {
         public int Id { get; set; }
-        public User User { get; set; }
-        public Board Board { get; set; }
+        public String UserName { get; set; }
+
+        // this would be used if we had multiple boards
+        //public Board Board { get; set; }
+
         public string MessageBody { get; set; }
     }
 }

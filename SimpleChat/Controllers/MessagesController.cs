@@ -30,16 +30,16 @@ namespace SimpleChat.Controllers
 
         // GET: api/Messages/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Message>> GetMessage(int id)
+        public async Task<ActionResult<List<Message>>> GetMessage(int id)
         {
-            var message = await _context.Messages.FindAsync(id);
+            List<Message> messages = await _context.Messages.Where(m => m.Id > id).ToListAsync();
 
-            if (message == null)
+            if (messages[0] == null)
             {
                 return NotFound();
             }
 
-            return message;
+            return messages;
         }
 
         // PUT: api/Messages/5

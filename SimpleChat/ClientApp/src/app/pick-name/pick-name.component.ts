@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 
 import { FormGroup, FormControl } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { PickNameService } from './pick-name.service';
+import { PickNameService } from '../services/pick-name.service';
 import { HomeComponent } from '../home/home.component';
 
 @Component({
@@ -11,6 +11,9 @@ import { HomeComponent } from '../home/home.component';
     styleUrls: ['./pick-name.component.css']
 })
 export class PickNameComponent {
+
+
+    // TODO restructure this so that users are objects of the user class
 
     user: User;
     users: User[];
