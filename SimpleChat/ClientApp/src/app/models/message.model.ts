@@ -13,7 +13,6 @@ export class Message implements Deserializable {
     //}
 
     deserialize(input: any): this {
-        // make sure this works as intented
       return Object.assign(this, input);
     }
 

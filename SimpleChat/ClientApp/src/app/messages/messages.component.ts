@@ -1,7 +1,7 @@
-import { Component, Inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { Message } from '../models/message.model'
 import { MessagesService } from '../services/messages.service'
-
+import { HomeComponent } from '../home/home.component';
 
 @Component({
     selector: 'messages-hook',
@@ -12,15 +12,48 @@ export class MessagesComponent {
 
     lastRetrievedMessageId: number;
     messages: Message[];
-    
-    constructor(private service: MessagesService) {
-        // retrieve all the messages up to this point
-        // save the message id somewhere
+    home: HomeComponent;
+
+    constructor(private service: MessagesService, home: HomeComponent) {
+        // TODO make this work
+        this.home = home;
+        //console.log("This is the messages user");
+        //console.log(this.home.user);
     }
 
     retrieveMessages() {
-        this.service.getMessages().subscribe(messages => this.messages = messages);
-        this.lastRetrievedMessageId = this.messages[(this.messages.length - 1)].id;
+        if (this.lastRetrievedMessageId != undefined) {
+            this.service.getNewMessages(this.lastRetrievedMessageId).subscribe(messages => {
+                messages.forEach((message) =>
+                    this.messages.push(message))
+                this.updateLastId();
+                console.log("latest retrieved has an id of " + this.lastRetrievedMessageId);
+            },
+                error => {
+
+                    console.log("Error", error);
+                    ;
+                }
+            );
+
+
+        } else {
+            this.service.getMessages().subscribe(messages => {
+
+               this.messages = messages;
+
+            }
+
+            );
+        }
+
+
+    }
+
+    updateLastId() {
+        if (this.messages != undefined) {
+            this.lastRetrievedMessageId = this.messages[(this.messages.length - 1)].id;
+        }
     }
 
     retrieveNewMessages() {
@@ -32,9 +65,12 @@ export class MessagesComponent {
 
         //the backend is already configured to return messages with Message.id > id, and as far as i know, they are sent in order of id ascending
     }
-    
-    ngOnInit() {
-        this.retrieveMessages();
-    }    
-}
 
+    ngOnInit() {
+        this.retrieveMessages;
+        setInterval(() => {
+            this.retrieveMessages()
+        }, 1000);
+
+    }
+}

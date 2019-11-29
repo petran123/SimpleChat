@@ -22,12 +22,17 @@ export class MessagesService {
 
 
     getMessages(): Observable<Message[]> {
-        return this.http.get<Message[]>(this.messagesUrl).pipe(map(data => data.map(data => new Message().deserialize(data)))
-        );
+        return this.http.get<Message[]>(this.messagesUrl).pipe(map(data =>
+            data.map(data =>
+                new Message().deserialize(data)
+            )));
     }
 
-    getNewMessages(id: number) {
-        // server queries the messages table for where message.Id > id
-        return this.http.get(this.messagesUrl + '/' + id);
+    getNewMessages(id: number): Observable<Message[]> {
+        // TODO try eventSource
+        return this.http.get<Message[]>(this.messagesUrl + id).pipe(map(data =>
+            data.map(data =>
+                new Message().deserialize(data)
+            )));
     }
 }

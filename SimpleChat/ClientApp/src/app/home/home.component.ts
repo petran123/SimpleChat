@@ -1,5 +1,5 @@
-import { Component, Inject } from '@angular/core';
-
+import { Component } from '@angular/core';
+import { User } from '../models/user.model';
 @Component({
     selector: 'app-home',
     templateUrl: './home.component.html',
@@ -8,17 +8,13 @@ import { Component, Inject } from '@angular/core';
 
 export class HomeComponent {
 
+    user: User;
+    users: User[] = [];
+
     hasName = false;
 
     hasPickedName() {
         this.hasName = true;
     }
-  
-}
 
-export interface User {
-
-    id: number;
-    userName: string;
-    isActive: boolean;
 }

@@ -1,9 +1,10 @@
-import { Component, Inject } from '@angular/core';
-
+import { Component, Inject, Input } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { PickNameService } from '../services/pick-name.service';
 import { HomeComponent } from '../home/home.component';
+
+import { User } from '../models/user.model';
 
 @Component({
     selector: 'pick-name-hook',
@@ -14,9 +15,7 @@ export class PickNameComponent {
 
 
     // TODO restructure this so that users are objects of the user class
-
-    user: User;
-    users: User[];
+    //users: User[];
     http: HttpClient;
     url: string;
     service: PickNameService;
@@ -33,22 +32,28 @@ export class PickNameComponent {
     });
 
 
-    showUsers() {
-        this.service.getUsers().subscribe((data: User) => this.user = {
-            id: data['id'],
-            userName: data['userName'],
-            isActive: data['isActive']
-        })
+    // TODO make this work
+    //showUsers() {
+    //    this.service.getUsers().subscribe((data: any[]) => {
+              
+    //        data.forEach(() => {
+    //            this.home.users.push(new User(data['id'], data['userName'], data['isActive']));
+    //        })
+    //        console.log('-----------');
+    //        console.log(this.home.users);
+    //        console.log('-----------');
+    //        })
+    //}
 
-        console.log(this.users);
-    }
+
+
 
 
     submitUserName() {
         //this.prepareToPost().subscribe(user => this.Users.push(User));
         let nameToSend = this.userForm.get('userName').value;
-        console.log(nameToSend);
-        console.log(this.url);
+        //console.log(nameToSend);
+        //console.log(this.url);
 
         //        return this.http.post<User>(this.baseUrl, nameToSend);
 
@@ -60,24 +65,15 @@ export class PickNameComponent {
                 "isActive": true
             })
             .subscribe(
-                data => {
-                    console.log("POST request was successful ", data);
+                (data: any) => {
+                    this.home.user = new User(data.id, data.userName, data.isActive);
                     this.home.hasPickedName();
+                    //console.log("POST request was successful ", this.home.user);
                 },
                 error => {
 
                     console.log("Error", error);
                     ;
                 });
-
-
-
     }
-}
-
-export interface User {
-
-    id: number;
-    userName: string;
-    isActive: boolean;
 }

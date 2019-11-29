@@ -32,9 +32,18 @@ namespace SimpleChat.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<List<Message>>> GetMessage(int id)
         {
-            List<Message> messages = await _context.Messages.Where(m => m.Id > id).ToListAsync();
+            List<Message> messages;
 
-            if (messages[0] == null)
+            try
+            {
+                messages = await _context.Messages.Where(m => m.Id > id).ToListAsync();
+            } 
+            catch(ArgumentOutOfRangeException e)
+            {
+                return NotFound();
+            }
+
+            if (messages == null)
             {
                 return NotFound();
             }

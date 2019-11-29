@@ -5,7 +5,6 @@ export class Message {
     //    this.messageBody = messageBody;
     //}
     deserialize(input) {
-        // make sure this works as intented
         return Object.assign(this, input);
     }
     getUserName() {

@@ -1,8 +1,7 @@
 <h1>message component</h1>
-<button (click)="logMessages()">Log Messages</button>
-<div class="message" *ngFor="let message of messages">
-  <div>
+<button (click)="retrieveMessages()">Log Messages</button>
+  <div class="message-list" *ngFor="let message of messages">
     <p><b>{{message.userName}}</b>: {{message.messageBody}}</p>
   </div>
-</div>
+
 
