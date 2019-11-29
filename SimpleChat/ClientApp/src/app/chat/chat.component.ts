@@ -29,8 +29,8 @@ export class ChatComponent {
         if (messageBody != '') {
             //post command here
             this.service.postMessage(this.home.user.userName, messageBody).subscribe((data: any) => {
-                // inject the data into the messages array, force a refresh if you have to
-                console.log(data);
+                
+                
             },
                 error => {
                     console.log("Error", error);

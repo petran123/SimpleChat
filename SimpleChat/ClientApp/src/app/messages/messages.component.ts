@@ -25,9 +25,10 @@ export class MessagesComponent {
         if (this.lastRetrievedMessageId != undefined) {
             this.service.getNewMessages(this.lastRetrievedMessageId).subscribe(messages => {
                 messages.forEach((message) =>
-                    this.messages.push(message))
+                    //this.messages.push(message))
+                    this.messages = [...this.messages, message])
                 this.updateLastId();
-                console.log("latest retrieved has an id of " + this.lastRetrievedMessageId);
+                //console.log("latest retrieved has an id of " + this.lastRetrievedMessageId);
             },
                 error => {
 
@@ -39,9 +40,10 @@ export class MessagesComponent {
 
         } else {
             this.service.getMessages().subscribe(messages => {
-
-               this.messages = messages;
-
+                //console.log('initialized messages');
+                //console.log(this.lastRetrievedMessageId);
+                this.messages = messages;
+                this.updateLastId();
             }
 
             );
@@ -51,7 +53,7 @@ export class MessagesComponent {
     }
 
     updateLastId() {
-        if (this.messages != undefined) {
+        if (this.messages.length > 0) {
             this.lastRetrievedMessageId = this.messages[(this.messages.length - 1)].id;
         }
     }
@@ -67,7 +69,8 @@ export class MessagesComponent {
     }
 
     ngOnInit() {
-        this.retrieveMessages;
+        this.retrieveMessages();
+        //i don't like this
         setInterval(() => {
             this.retrieveMessages()
         }, 1000);
