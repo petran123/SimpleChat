@@ -13,7 +13,8 @@ namespace SimpleChat.Data
         {
         }
 
-        public DbSet<Board> Boards { get; set; }
+        //board would be used if we had multiple channels
+        //public DbSet<Board> Boards { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Message> Messages { get; set; }
 

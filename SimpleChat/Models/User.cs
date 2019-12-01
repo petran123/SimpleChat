@@ -12,7 +12,8 @@ namespace SimpleChat.Models
 
         [Index(IsUnique = true)]
         public string UserName { get; set; }
-
+        
+        // This would be used to check if the user is online or not
         public bool IsActive { get; set; }
 
     }

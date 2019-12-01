@@ -27,22 +27,13 @@ export class ChatComponent {
         let messageBody = this.messageForm.get('newMessage').value;
 
         if (messageBody != '') {
-            //post command here
             this.service.postMessage(this.home.user.userName, messageBody).subscribe((data: any) => {
                 
                 
             },
                 error => {
                     console.log("Error", error);
-                    ;
                 });
-
-
-            //console.log('-------------');
-            //console.log("This should be posted");
-            //console.log(this.home.user.userName);
-            //console.log(messageBody);
-            //console.log('-------------');
 
             this.messageForm.patchValue({
                 newMessage: ''
@@ -50,16 +41,4 @@ export class ChatComponent {
         }
     }
 
-    ngOnInit() {
-        //console.log("This is from chat, the first input happens here")
-        //console.log(this.home.user);
-    }
-
-    // now we need a get for the user list, optionally a system that only shows those who are online
-
-
-    // then we need a method that posts messages
-
 }
-
-// TODO learn how to use the pick-name interface instead of having a duplicate

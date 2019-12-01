@@ -12,14 +12,9 @@ import { map } from 'rxjs/operators';
 })
 export class MessagesService {
 
-
-
-
     constructor(private http: HttpClient) { }
 
     messagesUrl = 'api/messages/'
-
-
 
     getMessages(): Observable<Message[]> {
         return this.http.get<Message[]>(this.messagesUrl).pipe(map(data =>
@@ -29,7 +24,6 @@ export class MessagesService {
     }
 
     getNewMessages(id: number): Observable<Message[]> {
-        // TODO try eventSource
         return this.http.get<Message[]>(this.messagesUrl + id).pipe(map(data =>
             data.map(data =>
                 new Message().deserialize(data)

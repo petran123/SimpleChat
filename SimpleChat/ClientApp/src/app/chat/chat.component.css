@@ -1,7 +1,6 @@
 .textbox {
   position: fixed;
   bottom: 0px;
-  /*left: 25%;*/
   width: 100%;
 }
 
@@ -11,16 +10,9 @@ input {
 }
 
 messages-container {
-  padding-bottom: 80px;
+  /*padding-bottom: 80px;*/
 }
 
 .textbox button {
   padding: 26px 19px;
 }
-
-/*experimenting with textarea
-.textbox textarea {
-  resize: none;
-
-}
-  */

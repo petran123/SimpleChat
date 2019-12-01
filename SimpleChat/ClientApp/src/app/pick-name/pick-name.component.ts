@@ -13,67 +13,32 @@ import { User } from '../models/user.model';
 })
 export class PickNameComponent {
 
-
-    // TODO restructure this so that users are objects of the user class
-    //users: User[];
-    http: HttpClient;
     url: string;
     service: PickNameService;
     home: HomeComponent;
 
-    constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string, home: HomeComponent) {
-        this.http = http;
+    constructor(service: PickNameService, @Inject('BASE_URL') baseUrl: string, home: HomeComponent) {
         this.url = baseUrl + "api/users/";
         this.home = home;
+        this.service = service;
     }
 
     userForm = new FormGroup({
         userName: new FormControl('')
     });
 
-
-    // TODO make this work
-    //showUsers() {
-    //    this.service.getUsers().subscribe((data: any[]) => {
-              
-    //        data.forEach(() => {
-    //            this.home.users.push(new User(data['id'], data['userName'], data['isActive']));
-    //        })
-    //        console.log('-----------');
-    //        console.log(this.home.users);
-    //        console.log('-----------');
-    //        })
-    //}
-
-
-
-
-
     submitUserName() {
-        //this.prepareToPost().subscribe(user => this.Users.push(User));
+
         let nameToSend = this.userForm.get('userName').value;
-        //console.log(nameToSend);
-        //console.log(this.url);
 
-        //        return this.http.post<User>(this.baseUrl, nameToSend);
-
-
-        // TODO redo this and understand what it actually does, step by step
-        return this.http.post(this.url,
-            {
-                "UserName": nameToSend,
-                "isActive": true
-            })
+        this.service.createUser(nameToSend)
             .subscribe(
                 (data: any) => {
                     this.home.user = new User(data.id, data.userName, data.isActive);
                     this.home.hasPickedName();
-                    //console.log("POST request was successful ", this.home.user);
                 },
                 error => {
-
                     console.log("Error", error);
-                    ;
                 });
     }
 }

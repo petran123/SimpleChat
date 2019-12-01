@@ -7,8 +7,7 @@ namespace SimpleChat.Models
 {
     public class Board
     {
-
-        // TODO try different implementations
+        // This file does nothing for now. It would be used to keep track of which board contains what
 
         public int Id { get; set; }
         public string Name { get; set; }

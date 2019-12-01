@@ -11,7 +11,16 @@ export class PickNameService {
 
     usersUrl = 'api/users/'
 
-    getUsers() {
-        return this.http.get(this.usersUrl);
+    //This would be used to retrieve a list of users online
+    //getUsers() {
+    //    return this.http.get(this.usersUrl);
+    //}
+
+    createUser(nameToSend) {
+        return this.http.post(this.usersUrl,
+            {
+                "UserName": nameToSend,
+                "isActive": true
+            })
     }
 }

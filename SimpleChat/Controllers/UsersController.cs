@@ -23,7 +23,6 @@ namespace SimpleChat.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
-            // TODO make this the only option and return where board.id = 1
             return await _context.Users.ToListAsync();
         }
 
@@ -86,15 +85,14 @@ namespace SimpleChat.Controllers
             {
                 if (!takenName.IsActive)
                 {
-                    // the problem with this solution is that names that can get stuck as active...
-                    // TODO find an alternative
-                    // perhaps a put/patch can do that after confirming? but in that case we can get duplicate users...
+                    // Currently the users are stuck as active until the server restarts.
+                    // TODO implement logout and timeout system
                     takenName.IsActive = true;
                     await _context.SaveChangesAsync();
 
                     return takenName;
                 }
-                // else
+                // this attaches a number to the user's name to avoid duplicates
                 int i = 1;
                 while (await _context.Users.Where(u => u.UserName == user.UserName + $" ({i})").AnyAsync())
                 {
