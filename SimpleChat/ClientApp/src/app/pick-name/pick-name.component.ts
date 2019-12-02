@@ -1,10 +1,10 @@
 import { Component, Inject, Input } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
 import { PickNameService } from '../services/pick-name.service';
 import { HomeComponent } from '../home/home.component';
 
 import { User } from '../models/user.model';
+
 
 @Component({
     selector: 'pick-name-hook',
@@ -14,13 +14,10 @@ import { User } from '../models/user.model';
 export class PickNameComponent {
 
     url: string;
-    service: PickNameService;
-    home: HomeComponent;
 
-    constructor(service: PickNameService, @Inject('BASE_URL') baseUrl: string, home: HomeComponent) {
+    constructor(private service: PickNameService, @Inject('BASE_URL') baseUrl: string, private home: HomeComponent) {
         this.url = baseUrl + "api/users/";
-        this.home = home;
-        this.service = service;
+
     }
 
     userForm = new FormGroup({

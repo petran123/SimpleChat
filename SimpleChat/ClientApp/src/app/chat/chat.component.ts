@@ -11,12 +11,10 @@ import { ChatService } from '../services/chat.service';
 
 export class ChatComponent {
 
-    home: HomeComponent;
-    service: ChatService;
 
-    constructor(home: HomeComponent, service: ChatService) {
-        this.home = home;
-        this.service = service;
+
+    constructor(private home: HomeComponent, private service: ChatService) {
+
     }
 
     messageForm = new FormGroup({

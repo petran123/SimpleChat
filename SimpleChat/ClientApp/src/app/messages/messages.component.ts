@@ -12,11 +12,9 @@ export class MessagesComponent {
 
     lastRetrievedMessageId: number;
     messages: Message[];
-    home: HomeComponent;
     container: HTMLElement;
 
-    constructor(private service: MessagesService, home: HomeComponent) {
-        this.home = home;
+    constructor(private service: MessagesService, private home: HomeComponent) {
     }
 
     retrieveMessages() {

@@ -8,11 +8,11 @@ import { HttpClient } from '@angular/common/http';
 })
 
 export class ChatService {
-    http: HttpClient;
+    //http: HttpClient;
     messageUrl = 'api/messages';
 
-    constructor(http: HttpClient) {
-        this.http = http;
+    constructor(private http: HttpClient) {
+        //this.http = http;
     }
 
     postMessage(userName: string, messageBody: string ) {

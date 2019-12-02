@@ -11,6 +11,9 @@ import { MessagesComponent } from './messages/messages.component';
 import { PickNameComponent } from './pick-name/pick-name.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
+import { ChatService } from './services/chat.service';
+import { MessagesService } from './services/messages.service';
+import { PickNameService } from './services/pick-name.service';
 
 @NgModule({
     declarations: [
