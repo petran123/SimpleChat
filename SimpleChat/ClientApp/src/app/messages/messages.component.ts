@@ -47,11 +47,11 @@ export class MessagesComponent {
                 this.messages = [...this.messages, message]);
 
             if (this.lastRetrievedMessageId < this.messages[(this.messages.length - 1)].id) {
+                this.updateLastId();
                 this.scrollDown();
             }
 
-            this.updateLastId();
-
+            
         },
             error => {
                 console.log("Error", error);
@@ -65,6 +65,7 @@ export class MessagesComponent {
         setInterval(() => {
             this.retrieveMessages();
         }, 1000);
+        setTimeout(() => this.container.scrollTop = this.container.scrollHeight, 200);
     }
 
 
@@ -72,8 +73,8 @@ export class MessagesComponent {
     
     scrollDown() {
         // I don't like this at all. I will change it when i find out a better option
-        setTimeout(() => this.container.scrollTop = this.container.scrollHeight, 100);
-
+        setTimeout(() => this.container.scrollTop = this.container.scrollHeight, 50);
+        
     }
 
 

@@ -7,8 +7,10 @@
 }
 
 .message-list {
-  overflow: scroll;
-  height: 800px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: calc(100vh - 9rem);
+  /*padding-bottom: 8rem;*/
 }
 
 p {
