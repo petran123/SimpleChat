@@ -17,3 +17,22 @@ messages-container {
 .textbox button {
   padding: 26px 19px;
 }
+
+.user-1 {
+  color: orange;
+}
+
+.user-2 {
+  color: blue;
+}
+
+.message-list {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: calc(100vh - 9rem);
+  /*padding-bottom: 8rem;*/
+}
+
+p {
+  margin-bottom: 0;
+}

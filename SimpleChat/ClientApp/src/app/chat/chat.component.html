@@ -1,5 +1,7 @@
 <div class="messages-container">
-  <messages-hook></messages-hook>
+  <div id="message-list" class="message-list">
+    <p *ngFor="let message of chatService.messages"><b (loaded)="scrollDown()">{{message.userName}}</b>: {{message.messageBody}}</p>
+  </div>
 </div>
 
 <div class="container">

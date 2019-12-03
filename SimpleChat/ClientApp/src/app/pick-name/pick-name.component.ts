@@ -4,6 +4,7 @@ import { PickNameService } from '../services/pick-name.service';
 import { HomeComponent } from '../home/home.component';
 
 import { User } from '../models/user.model';
+import { ChatService } from '../services/chat.service';
 
 
 @Component({
@@ -15,7 +16,7 @@ export class PickNameComponent {
 
     url: string;
 
-    constructor(private service: PickNameService, @Inject('BASE_URL') baseUrl: string, private home: HomeComponent) {
+    constructor(private pickNameService: PickNameService, @Inject('BASE_URL') baseUrl: string, private home: HomeComponent, private chatService: ChatService) {
         this.url = baseUrl + "api/users/";
 
     }
@@ -28,10 +29,10 @@ export class PickNameComponent {
 
         let nameToSend = this.userForm.get('userName').value;
 
-        this.service.createUser(nameToSend)
+        this.pickNameService.createUser(nameToSend)
             .subscribe(
                 (data: any) => {
-                    this.home.user = new User(data.id, data.userName, data.isActive);
+                    this.chatService.user = new User(data.id, data.userName, data.isActive);
                     this.home.hasPickedName();
                 },
                 error => {
