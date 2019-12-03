@@ -1,8 +1,6 @@
 # SimpleChat
 A simple chat webapp to demonstrate my knowledge of C# and Angular.
 
-It is currently on MVP stage.
-
 
 Future improvements:
 
@@ -13,3 +11,5 @@ Add user list.
 Add logic to turn users inactive after a timeout.
 
 improve auto-scroll.
+
+Refactor username picker.
